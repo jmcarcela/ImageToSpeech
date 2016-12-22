@@ -1,0 +1,2 @@
+# ImageToSpeech
+Trabajo de digitalización y adaptación a medios táctiles del panel de comunicación desarrollado por el Sistema Andaluz de Salud para que, personas como mi querido suegro, puedan beneficiarse y no sentirse frustrados por "no poder hablar", sino que se puedan comunicar mediante la síntesis de voz especialmente con el personal sanitario que los atiende y con sus cuidadores en todo aquello relacionado con las urgencias, su estado físico, emocional o sencillamente de confort.
