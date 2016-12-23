@@ -1,0 +1,374 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{70A0CC05-D1F9-4FEE-9065-DCBA5B24EEED}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ImageToSpeech</RootNamespace>
+    <AssemblyName>ImageToSpeech</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Speech" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="FormComunicaPlus.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormComunicaPlus.Designer.cs">
+      <DependentUpon>FormComunicaPlus.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormConfort.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormConfort.Designer.cs">
+      <DependentUpon>FormConfort.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormConfort2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormConfort2.Designer.cs">
+      <DependentUpon>FormConfort2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormCuerpo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormCuerpo.Designer.cs">
+      <DependentUpon>FormCuerpo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormCuerpo2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormCuerpo2.Designer.cs">
+      <DependentUpon>FormCuerpo2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormPartesCuerpo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPartesCuerpo.Designer.cs">
+      <DependentUpon>FormPartesCuerpo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormPral.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPral.Designer.cs">
+      <DependentUpon>FormPral.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormSentir.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSentir.Designer.cs">
+      <DependentUpon>FormSentir.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormUrgencias.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormUrgencias.Designer.cs">
+      <DependentUpon>FormUrgencias.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FormComunicaPlus.resx">
+      <DependentUpon>FormComunicaPlus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfort.resx">
+      <DependentUpon>FormConfort.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfort2.resx">
+      <DependentUpon>FormConfort2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormCuerpo.resx">
+      <DependentUpon>FormCuerpo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormCuerpo2.resx">
+      <DependentUpon>FormCuerpo2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPartesCuerpo.resx">
+      <DependentUpon>FormPartesCuerpo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPral.resx">
+      <DependentUpon>FormPral.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSentir.resx">
+      <DependentUpon>FormSentir.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormUrgencias.resx">
+      <DependentUpon>FormUrgencias.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pijama.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\zapatillas.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\peinarme.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\quePasado.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\noche.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dia.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mejor.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\peor.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\emocionado.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\back.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\l_fondo.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\foward.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\foward1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\enfermera.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\medico.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tragar.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\respirar.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mareo.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\vomito.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\fiebre.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\si.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\no.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\aVeces.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ayuda.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dolor.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\partesCuerpo.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\picor.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\wc.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\comer.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\beber.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\orinar.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\caca.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\frio.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\calor.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\gafas.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\audifono.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\andar.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sentar.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\incorporar.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\acostar.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\postura.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dormir.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\triste.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\solo.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\aburrido.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\enfadado.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\noDormir.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\preocupacion.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\miedo.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cuando.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\fecha.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hora.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\quePasado1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dondeEstoy.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\camison.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bata.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\papellimpiar.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sabanas.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ropaInterior.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\compresa.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\aseo.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\afeitado.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\familia.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\capellan.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\leer.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\leer1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\encender.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\apagar.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tv.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\movil.jpg" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
