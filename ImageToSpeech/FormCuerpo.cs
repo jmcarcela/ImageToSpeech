@@ -16,7 +16,7 @@ namespace ImageToSpeech
         SpeechSynthesizer synth = new SpeechSynthesizer();
         FormUrgencias padre = null;
         FormCuerpo2 frmCuerpo2 = null;
-        FormPral frmPral = null;
+        FormPral frmPral = Program.Programa;
 
         public FormUrgencias Padre
         {
@@ -68,6 +68,7 @@ namespace ImageToSpeech
             this.Hide();
         }
 
+        #region IMAGENES A VOZ - IMAGES TO SPEECH
         private void buttonMejor_Click(object sender, EventArgs e)
         {
             Prompt frase = new Prompt("Me encuentro mejor");
@@ -134,6 +135,13 @@ namespace ImageToSpeech
             synth.Speak(frase);
         }
 
+        private void buttonPeor_Click(object sender, EventArgs e)
+        {
+            Prompt frase = new Prompt("Me encuentro peor");
+            synth.Speak(frase);
+        }
+        #endregion
+
         private void buttonPartesCuerpo_Click(object sender, EventArgs e)
         {
             FormPartesCuerpo frmPartesCuerpo = new FormPartesCuerpo();
@@ -141,22 +149,33 @@ namespace ImageToSpeech
             frmPartesCuerpo.BringToFront();
         }
 
-        private void buttonPeor_Click(object sender, EventArgs e)
-        {
-            Prompt frase = new Prompt("Me encuentro peor");
-            synth.Speak(frase);
-        }
-
         private void FormCuerpo_FormClosed(object sender, FormClosedEventArgs e)
         {
-            frmPral = new FormPral();
-            frmPral.Show();
-            frmPral.BringToFront();
+            if (this.Padre != null)
+            {
+                this.Padre.Show();
+                this.Padre.BringToFront();
+            }
+            else
+            {
+                frmPral.Show();
+                frmPral.BringToFront();
+            }
+
+            this.Padre.CerrarCuerpo();
+            frmPral.CerrarCuerpo();
         }
 
         private void buttonInicio_Click(object sender, EventArgs e)
         {
-            this.Close();
+            frmPral.Show();
+            frmPral.BringToFront();
+            frmPral.CerrarCuerpo();
+        }
+
+        public void CerrarCuerpo2()
+        {
+            frmCuerpo2 = null;
         }
     }
 }

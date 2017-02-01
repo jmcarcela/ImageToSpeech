@@ -14,6 +14,7 @@ namespace ImageToSpeech
     public partial class FormUrgencias : Form
     {
         SpeechSynthesizer synth = new SpeechSynthesizer();
+        FormPral frmPral = Program.Programa;
         FormPral padreP = null;
         FormCuerpo frmCuerpo = null;
 
@@ -37,7 +38,7 @@ namespace ImageToSpeech
 
             synth.Volume = 100;
         }
-
+        #region IMAGENES A VOZ - IMAGES TO SPEECH
         private void buttonEnfermera_Click(object sender, EventArgs e)
         {
             Prompt frase = new Prompt("¡Llamen a una enfermera!");
@@ -103,7 +104,7 @@ namespace ImageToSpeech
             Prompt frase = new Prompt("¡Auxilio!");
             synth.Speak(frase);
         }
-
+        #endregion 
         private void buttonCuerpo_Click(object sender, EventArgs e)
         {
             if (frmCuerpo==null)
@@ -126,18 +127,33 @@ namespace ImageToSpeech
             }
             else
             {
-                FormPral frmPral = new FormPral();
-                frmPral.Show();
-                frmPral.BringToFront();
+                FormPral frmPral = Program.Programa;
+                this.PadreP = frmPral;
+                this.PadreP.Show();
+                this.PadreP.BringToFront();
                 this.Hide();
             }
         }
 
         private void FormUrgencias_FormClosed(object sender, FormClosedEventArgs e)
         {
-            FormPral frmPral = new FormPral();
-            frmPral.Show();
-            frmPral.BringToFront();
+            if (this.PadreP != null)
+            {
+                this.PadreP.Show();
+                this.PadreP.BringToFront();
+            }
+            else
+            {
+                this.PadreP = frmPral;
+                this.PadreP.Show();
+                this.PadreP.BringToFront();
+            }
+            this.PadreP.CerrarUrgencias();
+        }
+
+        public void CerrarCuerpo()
+        {
+            frmCuerpo = null;
         }
     }
 }

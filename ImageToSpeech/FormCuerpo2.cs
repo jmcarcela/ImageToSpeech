@@ -16,6 +16,7 @@ namespace ImageToSpeech
         SpeechSynthesizer synth = new SpeechSynthesizer();
         FormCuerpo padre = null;
         FormSentir frmSentir = null;
+        FormPral frmPral = Program.Programa;
 
         public FormCuerpo Padre
         {
@@ -28,6 +29,7 @@ namespace ImageToSpeech
             InitializeComponent();
         }
 
+        #region IMAGENES A VOZ - IMAGES TO SPEECH
         private void buttonSi_Click(object sender, EventArgs e)
         {
             Prompt frase = new Prompt("Síi");
@@ -105,6 +107,7 @@ namespace ImageToSpeech
             Prompt frase = new Prompt("Quisiera dormir, por favor");
             synth.Speak(frase);
         }
+        #endregion
 
         private void buttonAtras_Click(object sender, EventArgs e)
         {
@@ -141,23 +144,28 @@ namespace ImageToSpeech
                 // Aun no se ha creado el formulario, lo creamos
                 // 
                 frmSentir = new FormSentir();
-                frmSentir.Show();
-                frmSentir.BringToFront();
-                this.Hide();
+                frmSentir.Padre = this;
             }
-            else
-            {
-                frmSentir.Show();
-                frmSentir.BringToFront();
-                this.Hide();
-            }
+            frmSentir.Show();
+            frmSentir.BringToFront();
+            this.Hide();
         }
 
         private void FormCuerpo2_FormClosed(object sender, FormClosedEventArgs e)
         {
-            FormPral frmPral = new FormPral();
-            frmPral.Show();
-            frmPral.BringToFront();
+            if (this.Padre != null)
+            {
+                this.Padre.Show();
+                this.Padre.BringToFront();
+                //no es necesario crear el método en FormPral por no haber referencias a cuerpo2 desde principal
+                //pero sí desde FormCuerpo
+                this.Padre.CerrarCuerpo2();
+            }
+            else
+            {
+                frmPral.Show();
+                frmPral.BringToFront();
+            }
         }
 
         private void buttonInicio_Click(object sender, EventArgs e)

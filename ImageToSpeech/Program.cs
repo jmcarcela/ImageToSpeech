@@ -52,6 +52,7 @@ namespace ImageToSpeech
 {
     static class Program
     {
+        public static FormPral Programa;
         /// <summary>
         /// Punto de entrada principal para la aplicación.
         /// </summary>
@@ -60,7 +61,7 @@ namespace ImageToSpeech
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormPral());
+            Application.Run(Programa=new FormPral());
         }
     }
 }
