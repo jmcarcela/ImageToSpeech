@@ -44,17 +44,18 @@ namespace ImageToSpeech
                 // 
                 frmUrge = new FormUrgencias();
                 frmUrge.PadreP = this; // Comunicamos al formulario quien lo ha creado
-                                       // Mostramos el formulario
-                frmUrge.Show();
-                frmUrge.BringToFront();
-                this.Hide();
-            }
-            else
-            {
-                frmUrge.Show();
-                frmUrge.BringToFront();
-                this.Hide();
-            }            
+            }                           // Mostramos el formulario
+            frmUrge.Show();
+            frmUrge.BringToFront();
+            this.Hide();
+            
+            //}
+            //else
+            //{
+            //    frmUrge.Show();
+            //    frmUrge.BringToFront();
+            //    this.Hide();
+            //}            
         }
 
         private void buttonCuerpo_Click(object sender, EventArgs e)
