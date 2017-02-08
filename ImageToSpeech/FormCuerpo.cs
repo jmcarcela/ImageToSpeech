@@ -16,12 +16,18 @@ namespace ImageToSpeech
         SpeechSynthesizer synth = new SpeechSynthesizer();
         FormUrgencias padre = null;
         FormCuerpo2 frmCuerpo2 = null;
-        FormPral frmPral = Program.Programa;
+        FormPral frmPral = null;
 
         public FormUrgencias Padre
         {
             get { return padre; }
             set { padre = value; }
+        }
+
+        public FormPral Pral 
+        {
+            get { return frmPral; }
+            set { frmPral = value; }
         }
 
         public FormCuerpo()
@@ -50,6 +56,8 @@ namespace ImageToSpeech
             else
             {
                 FormUrgencias frmUrge = new FormUrgencias();
+                frmUrge.PadreP = frmPral;
+                frmUrge.Pral = frmPral;
                 frmUrge.Show();
                 frmUrge.BringToFront();
                 this.Hide();
@@ -62,6 +70,7 @@ namespace ImageToSpeech
             {
                 frmCuerpo2 = new FormCuerpo2();
                 frmCuerpo2.Padre = this;
+                frmCuerpo2.Pral = frmPral;
             }
             frmCuerpo2.Show();
             frmCuerpo2.BringToFront();
@@ -149,6 +158,13 @@ namespace ImageToSpeech
             frmPartesCuerpo.BringToFront();
         }
 
+        /// <summary>
+        /// Si se cierra el formCuerpo quiero que se muestre el formUrgencias -igual que si se hubiese dado al botón atrás-
+        /// pero comunicando al formUrgencias que formCuerpo ha sido cerrado, no ocultado, así como comunicándolo también
+        /// al formPrincipal.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void FormCuerpo_FormClosed(object sender, FormClosedEventArgs e)
         {
             if (this.Padre != null)
@@ -161,7 +177,7 @@ namespace ImageToSpeech
                 frmPral.Show();
                 frmPral.BringToFront();
             }
-
+            //Llamada a este método para comunicar el cierre del formCuerpo a otros formularios
             this.Padre.CerrarCuerpo();
             frmPral.CerrarCuerpo();
         }
@@ -170,9 +186,11 @@ namespace ImageToSpeech
         {
             frmPral.Show();
             frmPral.BringToFront();
-            frmPral.CerrarCuerpo();
+            this.Hide();
         }
 
+
+        // cuando formCuerpo2 se cierre habrá que llamar a este método para que formCuerpo sepa que frmCuerpo2 ha sido cerrado
         public void CerrarCuerpo2()
         {
             frmCuerpo2 = null;

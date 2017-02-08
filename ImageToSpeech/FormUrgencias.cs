@@ -14,8 +14,8 @@ namespace ImageToSpeech
     public partial class FormUrgencias : Form
     {
         SpeechSynthesizer synth = new SpeechSynthesizer();
-        FormPral frmPral = Program.Programa;
         FormPral padreP = null;
+        FormPral frmPral = null;
         FormCuerpo frmCuerpo = null;
 
         // Guarda el formulario que lo controla
@@ -24,6 +24,13 @@ namespace ImageToSpeech
             get { return padreP; }
             set { padreP = value; }
         }
+
+        public FormPral Pral
+        {
+            get { return frmPral; }
+            set { frmPral = value; }
+        }
+
         public FormUrgencias()
         {
             InitializeComponent();
@@ -111,12 +118,19 @@ namespace ImageToSpeech
             {
                 frmCuerpo = new FormCuerpo();
                 frmCuerpo.Padre = this;
+                frmCuerpo.Pral = frmPral;
             }
             frmCuerpo.Show();
             frmCuerpo.BringToFront();
             this.Hide();
         }
 
+
+        /// <summary>
+        /// Volver a mostrar formPrincipal.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonAtras_Click(object sender, EventArgs e)
         {
             if (this.PadreP != null)
@@ -127,7 +141,6 @@ namespace ImageToSpeech
             }
             else
             {
-                FormPral frmPral = Program.Programa;
                 this.PadreP = frmPral;
                 this.PadreP.Show();
                 this.PadreP.BringToFront();
@@ -135,6 +148,13 @@ namespace ImageToSpeech
             }
         }
 
+
+        /// <summary>
+        /// Si se cierra el formUrgencias quiero que se muestre el formPrincipal -igual que si se hubiese dado al botón atrás-
+        /// pero comunicando al formPrincipal que formUrgencias ha sido cerrado, no ocultado.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void FormUrgencias_FormClosed(object sender, FormClosedEventArgs e)
         {
             if (this.PadreP != null)
@@ -148,9 +168,13 @@ namespace ImageToSpeech
                 this.PadreP.Show();
                 this.PadreP.BringToFront();
             }
+
+            //Llamada a este método para comunicar el cierre del formUrgencias a otros formularios
             this.PadreP.CerrarUrgencias();
         }
 
+
+        // cuando formCuerpo se cierre habrá que llamar a este método para que formUrgencias sepa que frmCuerpo ha sido cerrado
         public void CerrarCuerpo()
         {
             frmCuerpo = null;

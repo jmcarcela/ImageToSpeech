@@ -16,12 +16,18 @@ namespace ImageToSpeech
         SpeechSynthesizer synth = new SpeechSynthesizer();
         FormCuerpo padre = null;
         FormSentir frmSentir = null;
-        FormPral frmPral = Program.Programa;
+        FormPral frmPral = null;
 
         public FormCuerpo Padre
         {
             get { return padre; }
             set { padre = value; }
+        }
+
+        public FormPral Pral
+        {
+            get { return frmPral; }
+            set { frmPral = value; }
         }
 
         public FormCuerpo2()
@@ -120,6 +126,7 @@ namespace ImageToSpeech
             else
             {
                 FormCuerpo frmCuerpo = new FormCuerpo();
+                frmCuerpo.Pral = frmPral;
                 frmCuerpo.Show();
                 frmCuerpo.BringToFront();
                 this.Hide();
@@ -140,11 +147,9 @@ namespace ImageToSpeech
         {
             if (frmSentir == null)
             {
-                //
-                // Aun no se ha creado el formulario, lo creamos
-                // 
                 frmSentir = new FormSentir();
                 frmSentir.Padre = this;
+                frmSentir.Pral = frmPral;
             }
             frmSentir.Show();
             frmSentir.BringToFront();
@@ -157,20 +162,27 @@ namespace ImageToSpeech
             {
                 this.Padre.Show();
                 this.Padre.BringToFront();
-                //no es necesario crear el método en FormPral por no haber referencias a cuerpo2 desde principal
-                //pero sí desde FormCuerpo
-                this.Padre.CerrarCuerpo2();
             }
             else
             {
                 frmPral.Show();
                 frmPral.BringToFront();
             }
+            //Llamada a este método para comunicar el cierre del formCuerpo a otros formularios
+            this.Padre.CerrarCuerpo2();
+            frmPral.CerrarCuerpo2();
         }
 
         private void buttonInicio_Click(object sender, EventArgs e)
         {
-            this.Close();
+            frmPral.Show();
+            frmPral.BringToFront();
+            this.Hide();
+        }
+
+        public void CerrarSentir()
+        {
+            frmSentir = null;
         }
     }
 }
