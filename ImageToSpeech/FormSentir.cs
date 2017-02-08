@@ -16,11 +16,18 @@ namespace ImageToSpeech
         SpeechSynthesizer synth = new SpeechSynthesizer();
         FormCuerpo2 padre = null;
         FormConfort frmConfort = null;
+        FormPral frmPral = null;
 
         public FormCuerpo2 Padre
         {
             get { return padre; }
             set { padre = value; }
+        }
+
+        public FormPral Pral
+        {
+            get { return frmPral; }
+            set { frmPral = value; }
         }
 
         public FormSentir()
@@ -48,30 +55,28 @@ namespace ImageToSpeech
             }
             else
             {
-                FormCuerpo2 frm = new FormCuerpo2();
-                frm.Show();
-                frm.BringToFront();
+                FormCuerpo2 frmCuerpo2 = new FormCuerpo2();
+                frmCuerpo2.Pral = frmPral;
+                frmCuerpo2.Show();
+                frmCuerpo2.BringToFront();
                 this.Hide();
             }
         }
 
         private void buttonConfort_Click(object sender, EventArgs e)
         {
-            if (frmConfort != null)
+            if (frmConfort == null)
             {
-                frmConfort.Show();
-                frmConfort.BringToFront();
-                this.Hide();
+                frmConfort = new FormConfort();
+                frmConfort.Padre = this;
+                frmConfort.Pral = frmPral;
             }
-            else
-            {
-                FormConfort frm = new FormConfort();
-                frm.Show();
-                frm.BringToFront();
-                this.Hide();
-            }
+            frmConfort.Show();
+            frmConfort.BringToFront();
+            this.Hide();
         }
 
+        #region IMAGENES A VOZ - IMAGES TO SPEECH
         private void buttonMejor_Click(object sender, EventArgs e)
         {
             Prompt frase = new Prompt("Me encuentro mejor");
@@ -149,12 +154,35 @@ namespace ImageToSpeech
             Prompt frase = new Prompt("Tengo miedo");
             synth.Speak(frase);
         }
+#endregion
 
         private void FormSentir_FormClosed(object sender, FormClosedEventArgs e)
         {
-            FormPral frmPral = new FormPral();
+            if (this.Padre != null)
+            {
+                this.Padre.Show();
+                this.Padre.BringToFront();
+            }
+            else
+            {
+                frmPral.Show();
+                frmPral.BringToFront();
+            }
+            //Llamada a este método para comunicar el cierre del formCuerpo a otros formularios
+            this.Padre.CerrarSentir();
+            frmPral.CerrarSentir();
+        }
+
+        public void CerrarConfort()
+        {
+            frmConfort = null;
+        }
+
+        private void buttonInicio_Click(object sender, EventArgs e)
+        {
             frmPral.Show();
             frmPral.BringToFront();
+            this.Hide();
         }
     }
 }

@@ -16,12 +16,20 @@ namespace ImageToSpeech
         SpeechSynthesizer synth = new SpeechSynthesizer();
         FormComunicaPlus frmComunicaPlus = null;
         FormConfort padre = null;
+        FormPral frmPral = null;
 
         public FormConfort Padre
         {
             get { return padre; }
             set { padre = value; }
         }
+
+        public FormPral Pral
+        {
+            get { return frmPral; }
+            set { frmPral = value; }
+        }
+
         public FormConfort2()
         {
             InitializeComponent();
@@ -48,12 +56,15 @@ namespace ImageToSpeech
             else
             {
                 FormConfort frmConfort = new FormConfort();
+                frmConfort.Pral = frmPral;
                 frmConfort.Show();
                 frmConfort.BringToFront();
                 this.Hide();
             }
         }
-        
+
+
+        #region IMAGENES A VOZ - IMAGES TO SPEECH
         private void buttonSi_Click(object sender, EventArgs e)
         {
             Prompt frase = new Prompt("Síi");
@@ -131,37 +142,49 @@ namespace ImageToSpeech
             Prompt frase = new Prompt("Quisiera mi móvil, por favor");
             synth.Speak(frase);
         }
+        #endregion
+
 
         private void FormConfort2_FormClosed(object sender, FormClosedEventArgs e)
         {
-            FormPral frmPral = new FormPral();
-            frmPral.Show();
-            frmPral.BringToFront();
+            if (this.Padre != null)
+            {
+                this.Padre.Show();
+                this.Padre.BringToFront();
+            }
+            else
+            {
+                frmPral.Show();
+                frmPral.BringToFront();
+            }
+            //Llamada a este método para comunicar el cierre del formCuerpo a otros formularios
+            this.Padre.CerrarConfort2();
+            frmPral.CerrarConfort2();
         }
 
         private void buttonInicio_Click(object sender, EventArgs e)
         {
-            this.Close();
+            frmPral.Show();
+            frmPral.BringToFront();
+            this.Hide();
         }
 
         private void buttonAdelante_Click(object sender, EventArgs e)
         {
             if (frmComunicaPlus == null)
             {
-                //
-                // Aun no se ha creado el formulario, lo creamos
-                // 
                 frmComunicaPlus = new FormComunicaPlus();
-                frmComunicaPlus.Show();
-                frmComunicaPlus.BringToFront();
-                this.Hide();
+                frmComunicaPlus.Padre = this;
+                frmComunicaPlus.Pral = frmPral;
             }
-            else
-            {
-                frmComunicaPlus.Show();
-                frmComunicaPlus.BringToFront();
-                this.Hide();
-            }
+            frmComunicaPlus.Show();
+            frmComunicaPlus.BringToFront();
+            this.Hide();
+        }
+
+        public void CerrarComunicaPlus()
+        {
+            frmComunicaPlus = null;
         }
     }
 }

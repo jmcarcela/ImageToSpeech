@@ -15,6 +15,7 @@ namespace ImageToSpeech
     {
         SpeechSynthesizer synth = new SpeechSynthesizer();
         FormPral padreP = null;
+        FormPral frmPral = null;
         FormCuerpo frmCuerpo = null;
 
         // Guarda el formulario que lo controla
@@ -23,6 +24,13 @@ namespace ImageToSpeech
             get { return padreP; }
             set { padreP = value; }
         }
+
+        public FormPral Pral
+        {
+            get { return frmPral; }
+            set { frmPral = value; }
+        }
+
         public FormUrgencias()
         {
             InitializeComponent();
@@ -37,7 +45,7 @@ namespace ImageToSpeech
 
             synth.Volume = 100;
         }
-
+        #region IMAGENES A VOZ - IMAGES TO SPEECH
         private void buttonEnfermera_Click(object sender, EventArgs e)
         {
             Prompt frase = new Prompt("¡Llamen a una enfermera!");
@@ -103,19 +111,26 @@ namespace ImageToSpeech
             Prompt frase = new Prompt("¡Auxilio!");
             synth.Speak(frase);
         }
-
+        #endregion 
         private void buttonCuerpo_Click(object sender, EventArgs e)
         {
             if (frmCuerpo==null)
             {
                 frmCuerpo = new FormCuerpo();
                 frmCuerpo.Padre = this;
+                frmCuerpo.Pral = frmPral;
             }
             frmCuerpo.Show();
             frmCuerpo.BringToFront();
             this.Hide();
         }
 
+
+        /// <summary>
+        /// Volver a mostrar formPrincipal.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonAtras_Click(object sender, EventArgs e)
         {
             if (this.PadreP != null)
@@ -126,18 +141,43 @@ namespace ImageToSpeech
             }
             else
             {
-                FormPral frmPral = new FormPral();
-                frmPral.Show();
-                frmPral.BringToFront();
+                this.PadreP = frmPral;
+                this.PadreP.Show();
+                this.PadreP.BringToFront();
                 this.Hide();
             }
         }
 
+
+        /// <summary>
+        /// Si se cierra el formUrgencias quiero que se muestre el formPrincipal -igual que si se hubiese dado al botón atrás-
+        /// pero comunicando al formPrincipal que formUrgencias ha sido cerrado, no ocultado.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void FormUrgencias_FormClosed(object sender, FormClosedEventArgs e)
         {
-            FormPral frmPral = new FormPral();
-            frmPral.Show();
-            frmPral.BringToFront();
+            if (this.PadreP != null)
+            {
+                this.PadreP.Show();
+                this.PadreP.BringToFront();
+            }
+            else
+            {
+                this.PadreP = frmPral;
+                this.PadreP.Show();
+                this.PadreP.BringToFront();
+            }
+
+            //Llamada a este método para comunicar el cierre del formUrgencias a otros formularios
+            this.PadreP.CerrarUrgencias();
+        }
+
+
+        // cuando formCuerpo se cierre habrá que llamar a este método para que formUrgencias sepa que frmCuerpo ha sido cerrado
+        public void CerrarCuerpo()
+        {
+            frmCuerpo = null;
         }
     }
 }
