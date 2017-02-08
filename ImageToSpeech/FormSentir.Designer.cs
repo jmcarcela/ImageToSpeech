@@ -323,6 +323,7 @@
             this.buttonInicio.TabIndex = 83;
             this.buttonInicio.Text = "Inicio";
             this.buttonInicio.UseVisualStyleBackColor = true;
+            this.buttonInicio.Click += new System.EventHandler(this.buttonInicio_Click);
             // 
             // FormSentir
             // 

@@ -16,6 +16,7 @@ namespace ImageToSpeech
         SpeechSynthesizer synth = new SpeechSynthesizer();
         FormCuerpo padre = null;
         FormSentir frmSentir = null;
+        FormPral frmPral = null;
 
         public FormCuerpo Padre
         {
@@ -23,11 +24,18 @@ namespace ImageToSpeech
             set { padre = value; }
         }
 
+        public FormPral Pral
+        {
+            get { return frmPral; }
+            set { frmPral = value; }
+        }
+
         public FormCuerpo2()
         {
             InitializeComponent();
         }
 
+        #region IMAGENES A VOZ - IMAGES TO SPEECH
         private void buttonSi_Click(object sender, EventArgs e)
         {
             Prompt frase = new Prompt("Síi");
@@ -105,6 +113,7 @@ namespace ImageToSpeech
             Prompt frase = new Prompt("Quisiera dormir, por favor");
             synth.Speak(frase);
         }
+        #endregion
 
         private void buttonAtras_Click(object sender, EventArgs e)
         {
@@ -117,6 +126,7 @@ namespace ImageToSpeech
             else
             {
                 FormCuerpo frmCuerpo = new FormCuerpo();
+                frmCuerpo.Pral = frmPral;
                 frmCuerpo.Show();
                 frmCuerpo.BringToFront();
                 this.Hide();
@@ -137,32 +147,42 @@ namespace ImageToSpeech
         {
             if (frmSentir == null)
             {
-                //
-                // Aun no se ha creado el formulario, lo creamos
-                // 
                 frmSentir = new FormSentir();
-                frmSentir.Show();
-                frmSentir.BringToFront();
-                this.Hide();
+                frmSentir.Padre = this;
+                frmSentir.Pral = frmPral;
             }
-            else
-            {
-                frmSentir.Show();
-                frmSentir.BringToFront();
-                this.Hide();
-            }
+            frmSentir.Show();
+            frmSentir.BringToFront();
+            this.Hide();
         }
 
         private void FormCuerpo2_FormClosed(object sender, FormClosedEventArgs e)
         {
-            FormPral frmPral = new FormPral();
-            frmPral.Show();
-            frmPral.BringToFront();
+            if (this.Padre != null)
+            {
+                this.Padre.Show();
+                this.Padre.BringToFront();
+            }
+            else
+            {
+                frmPral.Show();
+                frmPral.BringToFront();
+            }
+            //Llamada a este método para comunicar el cierre del formCuerpo a otros formularios
+            this.Padre.CerrarCuerpo2();
+            frmPral.CerrarCuerpo2();
         }
 
         private void buttonInicio_Click(object sender, EventArgs e)
         {
-            this.Close();
+            frmPral.Show();
+            frmPral.BringToFront();
+            this.Hide();
+        }
+
+        public void CerrarSentir()
+        {
+            frmSentir = null;
         }
     }
 }

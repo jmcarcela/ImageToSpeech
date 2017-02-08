@@ -24,6 +24,12 @@ namespace ImageToSpeech
             set { padre = value; }
         }
 
+        public FormPral Pral 
+        {
+            get { return frmPral; }
+            set { frmPral = value; }
+        }
+
         public FormCuerpo()
         {
             InitializeComponent();
@@ -50,6 +56,8 @@ namespace ImageToSpeech
             else
             {
                 FormUrgencias frmUrge = new FormUrgencias();
+                frmUrge.PadreP = frmPral;
+                frmUrge.Pral = frmPral;
                 frmUrge.Show();
                 frmUrge.BringToFront();
                 this.Hide();
@@ -62,12 +70,14 @@ namespace ImageToSpeech
             {
                 frmCuerpo2 = new FormCuerpo2();
                 frmCuerpo2.Padre = this;
+                frmCuerpo2.Pral = frmPral;
             }
             frmCuerpo2.Show();
             frmCuerpo2.BringToFront();
             this.Hide();
         }
 
+        #region IMAGENES A VOZ - IMAGES TO SPEECH
         private void buttonMejor_Click(object sender, EventArgs e)
         {
             Prompt frase = new Prompt("Me encuentro mejor");
@@ -134,6 +144,13 @@ namespace ImageToSpeech
             synth.Speak(frase);
         }
 
+        private void buttonPeor_Click(object sender, EventArgs e)
+        {
+            Prompt frase = new Prompt("Me encuentro peor");
+            synth.Speak(frase);
+        }
+        #endregion
+
         private void buttonPartesCuerpo_Click(object sender, EventArgs e)
         {
             FormPartesCuerpo frmPartesCuerpo = new FormPartesCuerpo();
@@ -141,22 +158,42 @@ namespace ImageToSpeech
             frmPartesCuerpo.BringToFront();
         }
 
-        private void buttonPeor_Click(object sender, EventArgs e)
-        {
-            Prompt frase = new Prompt("Me encuentro peor");
-            synth.Speak(frase);
-        }
-
+        /// <summary>
+        /// Si se cierra el formCuerpo quiero que se muestre el formUrgencias -igual que si se hubiese dado al botón atrás-
+        /// pero comunicando al formUrgencias que formCuerpo ha sido cerrado, no ocultado, así como comunicándolo también
+        /// al formPrincipal.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void FormCuerpo_FormClosed(object sender, FormClosedEventArgs e)
         {
-            frmPral = new FormPral();
-            frmPral.Show();
-            frmPral.BringToFront();
+            if (this.Padre != null)
+            {
+                this.Padre.Show();
+                this.Padre.BringToFront();
+            }
+            else
+            {
+                frmPral.Show();
+                frmPral.BringToFront();
+            }
+            //Llamada a este método para comunicar el cierre del formCuerpo a otros formularios
+            this.Padre.CerrarCuerpo();
+            frmPral.CerrarCuerpo();
         }
 
         private void buttonInicio_Click(object sender, EventArgs e)
         {
-            this.Close();
+            frmPral.Show();
+            frmPral.BringToFront();
+            this.Hide();
+        }
+
+
+        // cuando formCuerpo2 se cierre habrá que llamar a este método para que formCuerpo sepa que frmCuerpo2 ha sido cerrado
+        public void CerrarCuerpo2()
+        {
+            frmCuerpo2 = null;
         }
     }
 }

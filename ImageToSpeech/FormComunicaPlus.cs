@@ -16,17 +16,27 @@ namespace ImageToSpeech
         SpeechSynthesizer synth = new SpeechSynthesizer();
         FormConfort2 padre = null;
         StringBuilder texto = new StringBuilder("");
+        FormPral frmPral = null;
 
         public FormConfort2 Padre
         {
             get { return padre; }
             set { padre = value; }
         }
+
+        public FormPral Pral
+        {
+            get { return frmPral; }
+            set { frmPral = value; }
+        }
+
         public FormComunicaPlus()
         {
             InitializeComponent();
         }
 
+
+        #region IMAGENES A TEXTO - IMAGES TO SPEECH
         private void buttonSi_Click(object sender, EventArgs e)
         {
             Prompt frase = new Prompt("Síi");
@@ -44,6 +54,7 @@ namespace ImageToSpeech
             Prompt frase = new Prompt("Nooo");
             synth.Speak(frase);
         }
+        #endregion
 
         private void FormComunicaPlus_Load(object sender, EventArgs e)
         {
@@ -61,17 +72,19 @@ namespace ImageToSpeech
             {
                 this.Padre.Show();
                 this.Padre.BringToFront();
-                  this.Hide();
+                this.Hide();
             }
             else
             {
                 FormConfort2 frmConfort2 = new FormConfort2();
+                frmConfort2.Pral = frmPral;
                 frmConfort2.Show();
                 frmConfort2.BringToFront();
                 this.Hide();
             }
         }
-        
+
+        #region ESCRITURA DE CARACTERES
         private void buttonCOMMA_Click(object sender, EventArgs e)
         {
             texto.Append(", ");
@@ -353,6 +366,7 @@ namespace ImageToSpeech
             texto.Append("9");
             textBox.Text = texto.ToString();
         }
+        #endregion
 
         private void buttonLEER_Click(object sender, EventArgs e)
         {
@@ -362,14 +376,26 @@ namespace ImageToSpeech
 
         private void FormComunicaPlus_FormClosed(object sender, FormClosedEventArgs e)
         {
-            FormPral frmPral = new FormPral();
-            frmPral.Show();
-            frmPral.BringToFront();
+            if (this.Padre != null)
+            {
+                this.Padre.Show();
+                this.Padre.BringToFront();
+            }
+            else
+            {
+                frmPral.Show();
+                frmPral.BringToFront();
+            }
+            //Llamada a este método para comunicar el cierre del formCuerpo a otros formularios
+            this.Padre.CerrarComunicaPlus();
+            frmPral.CerrarComunicaPlus();
         }
 
         private void buttonInicio_Click(object sender, EventArgs e)
         {
-            this.Close();
+            frmPral.Show();
+            frmPral.BringToFront();
+            this.Hide();
         }
     }
 }
