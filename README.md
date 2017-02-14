@@ -1,5 +1,5 @@
 # ImageToSpeech - Imagen a Voz
-## ELA y Declaración de Intenciones
+## ELA y Declaración de Intenciones - ALS and Purposes
 Tras entrar en contacto con la enfermedad de la **Esclerosis Lateral Amiotrófica -ELA-**, la cual sufre con la paciencia
 del santo Job mi querido suegro Basilio desde hace alrededor de dos años, y animado por la labor docente que desarrollo
 en el I.E.S. San Sebastián de Huelva en el área de la Programación, he tomado la determinación de realizar este trabajo
@@ -7,6 +7,8 @@ de digitalización y adaptación a medios táctiles del *panel de comunicación 
 para que, personas como mi querido suegro, puedan beneficiarse y no sentirse frustrados por "no poder hablar", sino que se 
 puedan comunicar mediante la síntesis de voz especialmente con el personal sanitario que los atiende y con sus cuidadores
 en todo aquello relacionado con las urgencias, su estado físico, emocional o sencillamente su confort.
+
+>_After coming into contact with the disease of the Amyotrophic Lateral Sclerosis -ALS-, which suffers with the patience of the holy Job my beloved father-in-law Basilio for about two years, and encouraged by the teaching work that I develope in the San Sebastián High School at Huelva into the area of Software Engineering, I am resoluted to carry out this digitization and adaptation to tactile devices proyect of the communication panel developed by the Andalusian Health System so that people like my beloved father-in-law can benefit and not Feeling frustrated by "not being able to speak", but can communicate through the voice synthesis, specially with the health staff and their caregivers in everything related to urgencies, their physical, emotional state or simply their comfort._
 
 ## Trabajo Previo
 En relación con el panel de comunicacion desarrollado por el Sistema Andaluz de Salud, su página web indica lo siguiente *([fuente](http://www.juntadeandalucia.es/servicioandaluzdesalud/principal/documentosAcc.asp?pagina=pr_desa_Innovacion11))*:
