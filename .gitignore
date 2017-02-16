@@ -1,1 +1,3 @@
 *.exe
+/ImageToSpeech/obj/Debug
+/ImageToSpeech/bin/Debug

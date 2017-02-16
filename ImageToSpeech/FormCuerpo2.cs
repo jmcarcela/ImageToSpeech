@@ -117,20 +117,14 @@ namespace ImageToSpeech
 
         private void buttonAtras_Click(object sender, EventArgs e)
         {
-            if (this.Padre != null)
-            {
-                this.Padre.Show();
-                this.Padre.BringToFront();
-                this.Hide();
-            }
-            else
+            if (this.Padre == null)
             {
                 FormCuerpo frmCuerpo = new FormCuerpo();
                 frmCuerpo.Pral = frmPral;
-                frmCuerpo.Show();
-                frmCuerpo.BringToFront();
-                this.Hide();
             }
+            this.Padre.Show();
+            this.Padre.BringToFront();
+            this.Hide();
         }
 
         private void FormCuerpo2_Load(object sender, EventArgs e)
@@ -160,24 +154,20 @@ namespace ImageToSpeech
         {
             if (this.Padre != null)
             {
-                this.Padre.Show();
-                this.Padre.BringToFront();
+                this.Padre.CerrarCuerpo2();
             }
-            else
-            {
-                frmPral.Show();
-                frmPral.BringToFront();
-            }
+
+            frmPral.Show();
+            frmPral.BringToFront();
+
             //Llamada a este método para comunicar el cierre del formCuerpo a otros formularios
-            this.Padre.CerrarCuerpo2();
             frmPral.CerrarCuerpo2();
         }
 
         private void buttonInicio_Click(object sender, EventArgs e)
         {
-            frmPral.Show();
-            frmPral.BringToFront();
-            this.Hide();
+            this.Padre = null;
+            this.Close();
         }
 
         public void CerrarSentir()

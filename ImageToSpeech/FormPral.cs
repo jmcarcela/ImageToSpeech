@@ -243,15 +243,15 @@ namespace ImageToSpeech
         {
             FormCollection Coleccion=Application.OpenForms;
 
-            for(int i=0;i<Coleccion.Count;i++)
-                Coleccion[i].Close();
+            //for(int i=0;i<Coleccion.Count;i++)
+            //    Coleccion[i].Close();
 
             Application.Exit();
         }
 
         private void buttonSalir_Click(object sender, EventArgs e)
         {
-            //FormCollection Coleccion = Application.OpenForms;
+            FormCollection Coleccion = Application.OpenForms;
 
             //for (int i = 0; i < Coleccion.Count; i++)
             //    Coleccion[i].Close();

@@ -133,19 +133,14 @@ namespace ImageToSpeech
         /// <param name="e"></param>
         private void buttonAtras_Click(object sender, EventArgs e)
         {
-            if (this.PadreP != null)
-            {
-                this.PadreP.Show();
-                this.PadreP.BringToFront();
-                this.Hide();
-            }
-            else
+            if (this.PadreP == null)
             {
                 this.PadreP = frmPral;
-                this.PadreP.Show();
-                this.PadreP.BringToFront();
-                this.Hide();
             }
+            this.PadreP.Show();
+            this.PadreP.BringToFront();
+            this.PadreP = null;
+            this.Close();
         }
 
 
@@ -157,17 +152,12 @@ namespace ImageToSpeech
         /// <param name="e"></param>
         private void FormUrgencias_FormClosed(object sender, FormClosedEventArgs e)
         {
-            if (this.PadreP != null)
-            {
-                this.PadreP.Show();
-                this.PadreP.BringToFront();
-            }
-            else
+            if (this.PadreP == null)
             {
                 this.PadreP = frmPral;
-                this.PadreP.Show();
-                this.PadreP.BringToFront();
             }
+            this.PadreP.Show();
+            this.PadreP.BringToFront();
 
             //Llamada a este método para comunicar el cierre del formUrgencias a otros formularios
             this.PadreP.CerrarUrgencias();
