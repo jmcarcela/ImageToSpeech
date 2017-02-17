@@ -221,7 +221,7 @@ namespace ImageToSpeech
 
         private void buttonSi_Click(object sender, EventArgs e)
         {
-            Prompt frase = new Prompt("Síi");
+            Prompt frase = new Prompt("Sí");
             synth.Speak(frase);
         }
 
@@ -294,6 +294,5 @@ namespace ImageToSpeech
         {
             frmComunicaPlus = null;
         }
-
     }
 }

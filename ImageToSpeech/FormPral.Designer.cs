@@ -207,6 +207,7 @@
             this.buttonAuxilio.Text = "S O S";
             this.buttonAuxilio.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.buttonAuxilio.UseVisualStyleBackColor = true;
+            this.buttonAuxilio.Click += new System.EventHandler(this.buttonAuxilio_Click);
             // 
             // buttonSalir
             // 
