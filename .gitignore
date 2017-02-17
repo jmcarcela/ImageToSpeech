@@ -1,3 +1,4 @@
+./vs/ImageToSpeech/v14
+/ImageToSpeech/bin
+/ImageToSpeech/obj
 *.exe
-/ImageToSpeech/obj/Debug
-/ImageToSpeech/bin/Debug
